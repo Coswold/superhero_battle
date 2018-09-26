@@ -190,13 +190,23 @@ class Arena:
 		print(self.team_two.name + " stats:")	
 		self.team_two.stats()
 
+	def play_again(self):
+		answer = self.user_input("Do you want heroes to battle again? [y/n] ")
+		if answer == "y" or answer == "Y":
+			self.team_one.revive_heroes()
+			self.team_two.revive_heroes()
+			game_loop(self)
+
 arena = Arena()
 arena.build_team_one()
 arena.build_team_two()
-arena.team_battle()
-arena.show_stats()
 
+def game_loop(arena):
+	arena.team_battle()
+	arena.show_stats()
+	arena.play_again()
 
+game_loop(arena)
 
 #if __name__ == "__main__":
 #	hero = Hero("Wonder Woman")
